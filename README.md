@@ -1,7 +1,7 @@
 HOW TO USE
 ==========
 
-- Before using the script you need to create `cookie.txt` and `cookie2.txt` files.
+- Before using the script you need to create 2 files, `cookie.txt` and `cookie2.txt`.
 
 cookie.txt
 ----------
