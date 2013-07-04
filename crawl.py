@@ -8,6 +8,7 @@ from StringIO import StringIO
 COOKIE, COOKIE_2 = get_cookies()
 CLASS_SLUG       = "startup-001"
 CALLBACK         = "some"
+OUT_FILE         = "user_data.json"
 
 def get_page(url, use_cookie_2 = False):
     opener = urllib2.build_opener()
@@ -27,7 +28,7 @@ uids = set()
 thread_count = 1
 there_are_more_threads = True
 
-while there_are_more_threads and thread_count < 2:
+while there_are_more_threads:
     page_link = forum_thread_template % (thread_count, )
     try:
         data = get_page(page_link).read()
@@ -47,10 +48,19 @@ while there_are_more_threads and thread_count < 2:
 
 users = []
 
+number_of_users = len(uids)
+count = 1
+
+print "Crawling %d user profiles." % (number_of_users,)
+
 for uid in uids:
+    print count, " / ", number_of_users
     data = get_page(user_template % (uid,), True).read()
     user = data[len(CALLBACK)+2:len(data)-2].strip()
     if user:
         users.append(user)
+    count += 1
 
-print json.loads(users)
+fp = open(OUT_FILE, "a")
+fp.write(json.dumps(users))
+fp.close()
