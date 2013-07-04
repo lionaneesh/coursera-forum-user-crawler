@@ -48,7 +48,6 @@ while there_are_more_threads and thread_count < 2:
 users = []
 
 for uid in uids:
-    print uid
     data = get_page(user_template % (uid,), True).read()
     user = data[len(CALLBACK)+2:len(data)-2].strip()
     if user:
