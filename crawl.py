@@ -28,6 +28,7 @@ thread_count = 1
 there_are_more_threads = True
 
 while there_are_more_threads:
+    print "Scanning thread ", thread_count
     page_link = forum_thread_template % (thread_count, )
     try:
         data = get_page(page_link).read()
