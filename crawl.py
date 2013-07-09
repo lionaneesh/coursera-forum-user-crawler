@@ -61,6 +61,6 @@ for uid in uids:
         users.append(user)
     count += 1
 
-fp = open(OUT_FILE, "a")
+fp = open(OUT_FILE, "w")
 fp.write(json.dumps(users))
 fp.close()
