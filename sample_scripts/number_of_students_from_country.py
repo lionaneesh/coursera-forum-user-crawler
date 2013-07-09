@@ -1,7 +1,6 @@
 #!/bin/python2.7
 import sys
 import os
-import inspect
 
 p =  os.path.realpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), ".."))
 sys.path.append(p)
