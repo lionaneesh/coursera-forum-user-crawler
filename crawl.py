@@ -40,11 +40,13 @@ while there_are_more_threads:
             except KeyError:
                 pass
         thread_count += 1
-    except urllib2.HTTPError:
-        there_are_more_threads = False
+    except urllib2.HTTPError, e:
+        if e.read() == "Unexpected API error":
+            there_are_more_threads = False
+        else:
+            thread_count += 1
 
 # now we have all the uids let's get the user data
-
 users = []
 
 number_of_users = len(uids)
