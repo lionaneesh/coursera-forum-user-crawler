@@ -1,6 +1,5 @@
 #!/bin/python2.7
-import cookielib
-import requests, urllib2
+import urllib2
 import json
 from get_cookies import get_cookies
 from StringIO import StringIO
@@ -56,8 +55,9 @@ print "Crawling %d user profiles." % (number_of_users,)
 for uid in uids:
     print count, " / ", number_of_users
     data = get_page(user_template % (uid,), True).read()
-    user = data[len(CALLBACK)+2:len(data)-2].strip()
-    if user:
+    data = data[len(CALLBACK)+2:len(data)-2].strip()
+    if data:
+        user = json.loads(data)
         users.append(user)
     count += 1
 
